@@ -1,0 +1,17 @@
+{
+  "name": "destiny2",
+  "version": "0.0.0",
+  "homepage": "https://github.com/scotch-io/node-todo",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "headjs": "~1.0.3",
+    "jquery": "~2.1.1"
+  }
+}
