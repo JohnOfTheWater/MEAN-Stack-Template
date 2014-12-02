@@ -1,4 +1,28 @@
-/* line 1, ../app.scss */
+/* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/form.scss */
+.search_wrapper {
+  position: absolute;
+  top: 70%;
+  left: 30%;
+  outline: 1px solid;
+  width: 25em;
+  height: 5em;
+  padding: 1.4em 0 0 4em;
+  background: #777;
+  box-shadow: 1px 1px 10px black;
+}
+
+/* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.guardian_wrapper {
+  position: absolute;
+  outline: 1px solid;
+  top: 5%;
+  left: 5%;
+  right: 5%;
+  bottom: 35%;
+  background: #333;
+}
+
+/* line 4, ../app.scss */
 .jumbotron {
   color: #333;
 }

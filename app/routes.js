@@ -1,4 +1,5 @@
 var Todo = require('./models/todo');
+var request = require('request');
 
 module.exports = function(app) {
   console.log('load routes...');
@@ -37,6 +38,23 @@ module.exports = function(app) {
 				res.json(todos);
 			});
 		});
+
+	});
+
+	app.post('/proxyJSON', function(req, res) {
+    console.log('targetUrl: '+req.body.targetUrl);
+    
+    request({
+      url: req.body.targetUrl,
+      json: true
+      }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.json(body);
+      } else {
+        res.json({proxyError:error});
+      }
+      res.end();
+    });
 
 	});
 
