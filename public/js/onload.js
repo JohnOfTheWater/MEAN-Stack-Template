@@ -46,6 +46,7 @@ $('document').ready(function(){
 
     $input.focus();
     $guardianWrapper.hide();
+
    
     function generateCharacters(res){
       res.characters.forEach(function(guardian){
@@ -63,7 +64,8 @@ $('document').ready(function(){
         var $image = $('<div>'),
             $level = $('<h3>');
 
-        $image.addClass('guardian_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover');
+        $image.addClass('guardian_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover')
+          .attr('guardian-id', guardian.characterBase.characterId);
         $level.addClass('level_class').text(guardian.characterLevel);
 
         $image.append($level);
@@ -79,6 +81,13 @@ $('document').ready(function(){
     function appendData(res){
       console.dir(res);
       generateCharacters(res);
+    }
+
+    function displayInventory(res){
+      res.data.currencies.forEach(function(curr){
+        var currency = curr.itemHash;
+        console.log(hashes[currency] + ' ' + curr.value);
+      });
     }
 
     function getMemberShipId(){
@@ -120,9 +129,36 @@ $('document').ready(function(){
       });
     }
 
+    function getInventory(id){
+
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Inventory/';
+      $.ajax({
+        type: 'POST',
+        url: '/proxyJSON',
+        data: JSON.stringify({targetUrl: url}),
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json'
+      }).done(function(data) {
+        if(data.Response) {
+          console.log('retrieving inventory.... '+data.ErrorStatus+'!');
+          displayInventory(data.Response);
+        } else {
+          console.log('failure');
+        }
+      }).fail(function () {
+        console.log('errUnableToConnect');
+      });
+    }
+
 
     $button.click(function(){
       getMemberShipId();
+    });
+
+    $guardianWrapper.on('click', '.guardian_image', function(){
+      var id = $(this).attr('guardian-id');
+      console.log('guardian-id: '+id);
+      getInventory(id);
     });
 
 
