@@ -1,9 +1,25 @@
 .guardian_wrapper{
-position: absolute;
-outline: 1px solid;
-top: 5%;
-left: 5%;
-right: 5%;
-bottom: 35%;
-background: #333;
+  //display: none;
+  position: absolute;
+  outline: 1px solid;
+  top: 25%;
+  left: 5%;
+  right: 5%;
+  bottom: 5%;
+  background: #333;
+}
+
+.guardian_image{
+  width: 28em;
+  height: 20em;
+  float: left;
+  margin: 10px;
+}
+
+.level_class{
+  color: #FFF;
+  font-size: 1.9em;
+  position: relative;
+  top: 80%;
+  left: 90%;
 }

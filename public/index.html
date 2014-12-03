@@ -35,7 +35,7 @@
 </head>
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
-	<div class="container">
+	<div class="container" style='display:none'>
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
@@ -88,7 +88,9 @@
             <button class='submit_search'>search!</button>
   </section>
 
-  <section class='guardian_wrapper' ng-include="'guardian.html'">
+  <section class='guardian_wrapper'>
+    <h1 class='guardian_name'></h1>
+    <i class='guardian_icon'></i>
   </section>
 
 </body>

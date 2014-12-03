@@ -1,10 +1,10 @@
 /* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/form.scss */
 .search_wrapper {
   position: absolute;
-  top: 70%;
+  top: 10%;
   left: 30%;
+  right: 35%;
   outline: 1px solid;
-  width: 25em;
   height: 5em;
   padding: 1.4em 0 0 4em;
   background: #777;
@@ -15,11 +15,28 @@
 .guardian_wrapper {
   position: absolute;
   outline: 1px solid;
-  top: 5%;
+  top: 25%;
   left: 5%;
   right: 5%;
-  bottom: 35%;
+  bottom: 5%;
   background: #333;
+}
+
+/* line 12, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.guardian_image {
+  width: 28em;
+  height: 20em;
+  float: left;
+  margin: 10px;
+}
+
+/* line 19, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.level_class {
+  color: #FFF;
+  font-size: 1.9em;
+  position: relative;
+  top: 80%;
+  left: 90%;
 }
 
 /* line 4, ../app.scss */
