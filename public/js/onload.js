@@ -83,10 +83,37 @@ $('document').ready(function(){
       generateCharacters(res);
     }
 
-    function displayInventory(res){
+    function displayInventory(res, id){
+      console.dir(res);
+      var glimmerPath = '/img/glimmer.png',
+          vanguardMarksPath = '/img/vanguard_marks.png',
+          crucibleMarksPath = 'img/crucible_marks.png';
+
       res.data.currencies.forEach(function(curr){
         var currency = curr.itemHash;
         console.log(hashes[currency] + ' ' + curr.value);
+
+        var currencyType = hashes[currency],
+            imgPath
+
+        if(currencyType === 'glimmer'){
+          imgPath = glimmerPath;
+        }else if(currencyType === 'crucible marks'){
+          imgPath = crucibleMarksPath;
+        }else if(currencyType === 'vanguard marks'){
+          imgPath = vanguardMarksPath;
+        }
+        
+        var $img = $('<div>'),
+            $value = $('<h3>');
+
+        $img.addClass('currency_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover');
+        $value.addClass('currency_text').text(curr.value);
+
+        $img.append($value);
+        $('.guardian_image[guardian-id="'+id+'"]').append($img);
+
+
       });
     }
 
@@ -100,11 +127,15 @@ $('document').ready(function(){
         data: JSON.stringify({targetUrl: url5}),
         contentType:'application/json; charset=utf-8',
         dataType: 'json'
-      }).done(function(data) {
-          membershipId = data.Response[0].membershipId;
-          membershipType = (data.Response[0].membershipType);
-          console.log('membershipId retrieved');
-          findGuardian();
+      }).done(function(data){
+          if(data.Response.length > 0){
+            membershipId = data.Response[0].membershipId;
+            membershipType = (data.Response[0].membershipType);
+            console.log('membershipId retrieved');
+            findGuardian();
+          }else{
+            console.log('please enter a valid gamertag');
+          }
       });
     }
 
@@ -141,7 +172,7 @@ $('document').ready(function(){
       }).done(function(data) {
         if(data.Response) {
           console.log('retrieving inventory.... '+data.ErrorStatus+'!');
-          displayInventory(data.Response);
+          displayInventory(data.Response, id);
         } else {
           console.log('failure');
         }

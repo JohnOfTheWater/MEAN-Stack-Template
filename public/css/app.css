@@ -39,6 +39,22 @@
   left: 90%;
 }
 
+/* line 26, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.currency_image {
+  width: 4em;
+  height: 4em;
+  float: left;
+  margin: 10px;
+  border: 1.5px solid #FFF;
+}
+
+/* line 33, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.currency_text {
+  position: relative;
+  top: 1.7em;
+  color: #FFF;
+}
+
 /* line 4, ../app.scss */
 .jumbotron {
   color: #333;
