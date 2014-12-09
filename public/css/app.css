@@ -28,9 +28,10 @@
   height: 20em;
   float: left;
   margin: 10px;
+  position: relative;
 }
 
-/* line 19, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 20, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .level_class {
   color: #FFF;
   font-size: 1.9em;
@@ -39,23 +40,25 @@
   left: 90%;
 }
 
-/* line 26, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 27, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .currency_image {
   width: 4em;
   height: 4em;
   float: left;
   margin: 10px;
   border: 1.5px solid #FFF;
+  position: relative;
+  top: 13%;
 }
 
-/* line 33, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 36, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .currency_text {
   position: relative;
   top: 1.7em;
   color: #FFF;
 }
 
-/* line 38, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 41, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .progress_bar {
   width: 90%;
   height: 30px;
@@ -66,10 +69,34 @@
   top: 60%;
 }
 
-/* line 47, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 50, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .progression {
   height: 30px;
   background: crimson;
+}
+
+/* line 54, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.xp_wrapper {
+  position: absolute;
+  background: #e3e3e3;
+  outline: 2px solid #FFF;
+  opacity: 0;
+  margin: 0;
+  left: 5%;
+  right: 5%;
+  top: 5%;
+  bottom: 5%;
+  padding: 15px;
+  z-index: -1;
+}
+
+/* line 67, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.xp_total, .xp_daily, .xp_weekly {
+  color: crimson;
+  margin: 0;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 5px gold;
+  text-transform: uppercase;
 }
 
 /* line 4, ../app.scss */

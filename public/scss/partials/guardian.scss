@@ -14,6 +14,7 @@
   height: 20em;
   float: left;
   margin: 10px;
+  position: relative;
 }
 
 .level_class{
@@ -29,6 +30,8 @@
   float: left;
   margin: 10px;
   border: 1.5px solid #FFF;
+  position: relative;
+  top: 13%;
 }
 .currency_text{
 position: relative;
@@ -47,4 +50,24 @@ top: 60%;
 .progression{
 height: 30px;
 background: crimson;
+}
+.xp_wrapper{
+position: absolute;
+background: #e3e3e3;
+outline: 2px solid #FFF;
+opacity: 0;
+margin: 0;
+left: 5%;
+right: 5%;
+top: 5%;
+bottom: 5%;
+padding: 15px;
+z-index: -1;
+}
+.xp_total, .xp_daily, .xp_weekly{
+color: crimson;
+margin: 0;
+margin-bottom: 20px;
+text-shadow: 1px 1px 5px gold;
+text-transform: uppercase;
 }

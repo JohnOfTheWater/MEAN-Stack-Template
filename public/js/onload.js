@@ -120,18 +120,35 @@ $('document').ready(function(){
     function displayProgression(res, id){
       console.log('progression: ');
       console.dir(res);
+      var totalXp = res.data.levelProgression.currentProgress,
+          dailyXp = res.data.levelProgression.dailyProgress,
+          weeklyXp = res.data.levelProgression.weeklyProgress;
 
       var percentage = res.data.percentToNextLevel;
       console.log(percentage);
 
       var $progressBar = $('<div>'),
-          $progression = $('<div>');
+          $progression = $('<div>'),
+          $xpWrapper = $('<div>'),
+          $xpTotal = $('<h3>'),
+          $xpDaily = $('<h3>'),
+          $xpWeekly = $('<h3>');
 
       $progressBar.addClass('progress_bar');
-      $progression.addClass('progression').css('width', percentage+'%');
+      $progression.addClass('progression').css('width', '0');//.css('width', percentage+'%');
+      $xpWrapper.addClass('xp_wrapper').css('position', 'absolute');
+      $xpTotal.addClass('xp_total').text('all time xp: '+totalXp);
+      $xpDaily.addClass('xp_daily').text('daily xp: '+dailyXp);
+      $xpWeekly.addClass('xp_weekly').text('weekly xp: '+weeklyXp);
 
+
+      $xpWrapper.append($xpTotal).append($xpDaily).append($xpWeekly);
       $progressBar.append($progression);
-      $('.guardian_image[guardian-id="'+id+'"]').append($progressBar);
+      $('.guardian_image[guardian-id="'+id+'"]')
+        .append($progressBar)
+        .append($xpWrapper);
+
+      $progression.velocity({width: percentage+'%'}, {duration: 1500});
 
     }
 
@@ -233,7 +250,11 @@ $('document').ready(function(){
       getProgression(id);
     });
 
+    $guardianWrapper.on('click', '.progression', function(event){
+      event.stopPropagation();
+      console.log('ciao');
+      $(this).parent().next().css('z-index', '2').velocity({opacity: 1});
+    });
 
-    
 
 });
