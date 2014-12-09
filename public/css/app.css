@@ -55,6 +55,23 @@
   color: #FFF;
 }
 
+/* line 38, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.progress_bar {
+  width: 90%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  outline: 2px solid #222;
+  margin: 0 auto;
+  position: relative;
+  top: 60%;
+}
+
+/* line 47, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+.progression {
+  height: 30px;
+  background: crimson;
+}
+
 /* line 4, ../app.scss */
 .jumbotron {
   color: #333;

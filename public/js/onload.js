@@ -117,6 +117,24 @@ $('document').ready(function(){
       });
     }
 
+    function displayProgression(res, id){
+      console.log('progression: ');
+      console.dir(res);
+
+      var percentage = res.data.percentToNextLevel;
+      console.log(percentage);
+
+      var $progressBar = $('<div>'),
+          $progression = $('<div>');
+
+      $progressBar.addClass('progress_bar');
+      $progression.addClass('progression').css('width', percentage+'%');
+
+      $progressBar.append($progression);
+      $('.guardian_image[guardian-id="'+id+'"]').append($progressBar);
+
+    }
+
     function getMemberShipId(){
       var gamertag = $input.val();
       console.log(gamertag);
@@ -130,6 +148,7 @@ $('document').ready(function(){
       }).done(function(data){
           if(data.Response.length > 0){
             membershipId = data.Response[0].membershipId;
+            console.log('membershipId: '+membershipId);
             membershipType = (data.Response[0].membershipType);
             console.log('membershipId retrieved');
             findGuardian();
@@ -181,6 +200,27 @@ $('document').ready(function(){
       });
     }
 
+    function getProgression(id){
+
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Progression/';
+      $.ajax({
+        type: 'POST',
+        url: '/proxyJSON',
+        data: JSON.stringify({targetUrl: url}),
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json'
+      }).done(function(data) {
+        if(data.Response) {
+          console.log('retrieving progression.... '+data.ErrorStatus+'!');
+          displayProgression(data.Response, id);
+        } else {
+          console.log('failure');
+        }
+      }).fail(function () {
+        console.log('errUnableToConnect');
+      });
+    }
+
 
     $button.click(function(){
       getMemberShipId();
@@ -190,6 +230,7 @@ $('document').ready(function(){
       var id = $(this).attr('guardian-id');
       console.log('guardian-id: '+id);
       getInventory(id);
+      getProgression(id);
     });
 
 
