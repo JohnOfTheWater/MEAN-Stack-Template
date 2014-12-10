@@ -152,6 +152,11 @@ $('document').ready(function(){
 
     }
 
+    function displayActivities(res, id){
+      console.log('activities: ');
+      console.dir(res);
+    }
+
     function getMemberShipId(){
       var gamertag = $input.val();
       console.log(gamertag);
@@ -238,6 +243,27 @@ $('document').ready(function(){
       });
     }
 
+    function getActivities(id){
+
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Activities/';
+      $.ajax({
+        type: 'POST',
+        url: '/proxyJSON',
+        data: JSON.stringify({targetUrl: url}),
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json'
+      }).done(function(data) {
+        if(data.Response) {
+          console.log('retrieving activities.... '+data.ErrorStatus+'!');
+          displayActivities(data.Response, id);
+        } else {
+          console.log('failure');
+        }
+      }).fail(function () {
+        console.log('errUnableToConnect');
+      });
+    }
+
 
     $button.click(function(){
       getMemberShipId();
@@ -248,6 +274,7 @@ $('document').ready(function(){
       console.log('guardian-id: '+id);
       getInventory(id);
       getProgression(id);
+      getActivities(id);
     });
 
     $guardianWrapper.on('click', '.progression', function(event){
