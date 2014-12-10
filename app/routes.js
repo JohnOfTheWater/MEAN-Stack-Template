@@ -1,5 +1,6 @@
 var Todo = require('./models/todo');
 var request = require('request');
+var Destiny = require('destiny-client')(/* { host: 'http://localhost:9000' } */);
 
 module.exports = function(app) {
   console.log('load routes...');
@@ -56,6 +57,14 @@ module.exports = function(app) {
       res.end();
     });
 
+	});
+
+	app.get('/destinyCLIENT', function(req, response) {
+    Destiny
+      .character.inventory({ type: 2, membership: '4611686018428410896', id: '2305843009215383036', query: {descriptions: true} })
+      .end(function (err, res) {
+        response.send(res.text);
+      });
 	});
 
 	// delete a todo

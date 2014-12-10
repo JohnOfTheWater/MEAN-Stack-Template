@@ -180,6 +180,21 @@ $('document').ready(function(){
       });
     }
 
+    function xxx(){
+      $.ajax({
+        type: 'GET',
+        url: '/destinyCLIENT',
+      }).done(function(data){
+          if(data){
+            data = jQuery.parseJSON(data)
+            console.log('more detailed data');
+            console.dir(data);
+          }else{
+            console.log('nope');
+          }
+      });
+    }
+
     function findGuardian(){
 
       var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/';
@@ -275,6 +290,7 @@ $('document').ready(function(){
       getInventory(id);
       getProgression(id);
       getActivities(id);
+      xxx();
     });
 
     $guardianWrapper.on('click', '.progression', function(event){
