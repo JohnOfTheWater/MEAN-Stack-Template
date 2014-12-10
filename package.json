@@ -9,6 +9,7 @@
     "bower": "^1.3.12",
     "browser-sync": "^1.6.5",
     "bungie-platform": "0.0.1",
+    "destiny-client": "^0.3.1",
     "express": "~4.6.1",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^1.0.1",
