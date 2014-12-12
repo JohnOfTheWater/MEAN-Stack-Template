@@ -124,7 +124,7 @@ $('document').ready(function(){
           dailyXp = res.data.levelProgression.dailyProgress,
           weeklyXp = res.data.levelProgression.weeklyProgress;
 
-      var percentage = res.data.percentToNextLevel;
+      var percentage = (res.data.levelProgression.progressToNextLevel/80000)*100;
       console.log(percentage);
 
       var $progressBar = $('<div>'),
@@ -180,15 +180,15 @@ $('document').ready(function(){
       });
     }
 
-    function xxx(){
+    function findFullData(){
       $.ajax({
         type: 'GET',
-        url: '/destinyCLIENT',
+        url: '/destinyINVENTORY',
       }).done(function(data){
           if(data){
             data = jQuery.parseJSON(data)
             console.log('more detailed data');
-            console.dir(data);
+            console.dir(data.Response.data);
           }else{
             console.log('nope');
           }
@@ -290,7 +290,7 @@ $('document').ready(function(){
       getInventory(id);
       getProgression(id);
       getActivities(id);
-      xxx();
+      findFullData();
     });
 
     $guardianWrapper.on('click', '.progression', function(event){

@@ -59,7 +59,7 @@ module.exports = function(app) {
 
 	});
 
-	app.get('/destinyCLIENT', function(req, response) {
+	app.get('/destinyINVENTORY', function(req, response) {
     Destiny
       .character.inventory({ type: 2, membership: '4611686018428410896', id: '2305843009215383036', query: {descriptions: true} })
       .end(function (err, res) {
