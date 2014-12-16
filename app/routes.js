@@ -59,14 +59,44 @@ module.exports = function(app) {
 
 	});
 
-	app.get('/destinyINVENTORY', function(req, response) {
+	app.get('/destinyINVENTORY/:id/:membershipId', function(req, response) {
+    var membershipId = req.params.membershipId,
+                  id = req.params.id;
+    Destiny
+      .character.inventory({ type: 2, membership: membershipId, id: id, query: {definitions: true} })
+      .end(function (err, res) {
+        response.send(res.text);
+      });
+	});
+
+	app.get('/destinyACTIVITIES/:id/:membershipId', function(req, response) {
+    var membershipId = req.params.membershipId,
+                  id = req.params.id;
+    Destiny
+      .character.activities({ type: 2, membership: membershipId, id: id, query: {definitions: true} })
+      .end(function (err, res) {
+        response.send(res.text);
+      });
+	});
+
+	app.get('/destinyPROGRESSION/:id/:membershipId', function(req, response) {
+    var membershipId = req.params.membershipId,
+                  id = req.params.id;
+    Destiny
+      .character.progression({ type: 2, membership: membershipId, id: id, query: {definitions: true} })
+      .end(function (err, res) {
+        response.send(res.text);
+      });
+	});
+/*
+	app.get('/destinyACTIVITIES', function(req, response) {
     Destiny
       .character.inventory({ type: 2, membership: '4611686018428410896', id: '2305843009215383036', query: {descriptions: true} })
       .end(function (err, res) {
         response.send(res.text);
       });
 	});
-
+*/
 	// delete a todo
 	app.delete('/api/todos/:todo_id', function(req, res) {
 		Todo.remove({

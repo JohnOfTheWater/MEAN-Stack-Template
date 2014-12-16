@@ -8,6 +8,8 @@ $('document').ready(function(){
     accountType = 'TigerPSN',
     characterId = '2305843009215383036', //titan
     $guardianWrapper = $('.guardian_wrapper'),
+    $guardianStatsWrapper = $('.guardian_stats_wrapper'),
+    $close = $('.close');
     username = 'IBlackGolemI';
     //url = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/',
     //url1 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Inventory/',
@@ -41,11 +43,53 @@ $('document').ready(function(){
       weeklyMarks: {
         2033897742: 'Weekly Vanguard Marks',
         2033897755: 'Weekly Crucible Marks'
+      },
+      progressions: {
+        45089664: 'terminals',
+        174528503: 'eris morn',
+        452808717: 'queen faction',
+        529303302: 'cryptarch',
+        594203991: 'iron banner loss token',
+        665638366: 'superior gear material source',
+        691336206: 'pvp tournament',
+        1357277120: 'crucible quartermaster',
+        1424722124: 'future war cult',
+        1707948164: 'chests on the moon',
+        1716568313: 'character level',
+        1774654531: 'chests on earth',
+        2030054750: 'mote of light',
+        2033897742: 'weekly vanguard marks',
+        2033897755: 'weekly crucible marks',
+        2060414935: 'base item level',
+        2158037182: 'chests on venus',
+        2161005788: 'iron banner',
+        2193513588: 'chests mars',
+        2318284751: 'bannerhammer pvp quitterness',
+        2778795080: 'dead orbit',
+        3122728759: 'pvp idleness',
+        3233510749: 'vanguard quartermaster',
+        3298204156: 'character xp',
+        3467485450: 'pvp_tournament0.losses',
+        3871980777: 'new monarchy',
+        4106427035: 'death penalty'
       }
     };
 
+   var selectedFactions = [
+    {'faction':3233510749, icon:'http://evernode.delacqua.us/img/johngmailcom/john/530329-i3qvhr.jpg'},
+    {'faction':1357277120, icon:'http://evernode.delacqua.us/img/johngmailcom/john/152329-5pza1k.jpeg'},
+    {'faction':529303302, icon:'http://evernode.delacqua.us/img/johngmailcom/john/349329-bvfati.png'},
+    {'faction':1424722124, icon:'http://evernode.delacqua.us/img/johngmailcom/john/286329-rdtb4c.jpeg'},
+    {'faction':2778795080, icon:'http://evernode.delacqua.us/img/johngmailcom/john/388329-spvb5..jpeg'},
+    {'faction':3871980777, icon:'http://evernode.delacqua.us/img/johngmailcom/john/529329-1cqef4.jpg'},
+    {'faction':174528503, icon:'http://evernode.delacqua.us/img/johngmailcom/john/917329-zdpdjv.jpg'}
+    //{'faction':2033897742, icon:''},
+    //{'faction':2033897755, icon:''}
+   ];
+
     $input.focus();
     $guardianWrapper.hide();
+    $guardianStatsWrapper.hide();
 
    
     function generateCharacters(res){
@@ -81,6 +125,63 @@ $('document').ready(function(){
     function appendData(res){
       console.dir(res);
       generateCharacters(res);
+    }
+
+    function displayStats(data){
+      setTimeout(function(){
+
+        console.log('now!!!');
+        console.dir(data.progressions);
+        data = data.progressions;
+        var i = 1; 
+        data.forEach(function(fact){
+        
+          _.find(selectedFactions, function(selectedFaction){
+              if(selectedFaction.faction === fact.progressionHash){
+                
+                var percentage = (fact.progressToNextLevel/fact.nextLevelAt)*100;
+
+                console.log('percentage:');
+                console.log(percentage);
+                var $faction = $('<section>'),
+                    $factionIcon = $('<div>'),
+                    $factionProgressBar = $('<div>'),
+                    $factionProgression = $('<div>'),
+                    $numericProgression = $('<h4>'),
+                    $rank = $('<h2>');
+
+                $faction.attr('data-id', fact.progressionHash).addClass('faction');
+                $factionIcon.addClass('faction_icon')
+                  .css('background', 'url("'+selectedFaction.icon+'")')
+                  .css('background-size', 'cover')
+                  .attr('id', selectedFaction.faction);
+                $factionProgressBar.addClass('faction_progress_bar');
+                $factionProgression.addClass('faction_progression').css('width', '0');//.css('width', percentage+'%');
+                $numericProgression.addClass('numeric_progression').text(''+hashes.progressions[selectedFaction.faction]+': "'+fact.progressToNextLevel+'/'+fact.nextLevelAt+'"');
+                $rank.addClass('rank').text('Rank: '+fact.level);
+
+
+                $factionProgressBar.append($factionProgression);
+
+                $faction.append($factionIcon)
+                  .append($factionProgressBar)
+                  .append($rank)
+                  .append($numericProgression);
+
+                $guardianStatsWrapper.append($faction);
+
+
+                $factionProgression.velocity({width: percentage+'%'}, {duration: 1000});
+              }
+          
+            });
+          
+        });
+        var $close = $('<div>');
+        $close.addClass('close').text('x');
+        $guardianStatsWrapper.append($close).fadeIn();
+      
+      }, 1500);
     }
 
     function displayInventory(res, id){
@@ -148,7 +249,7 @@ $('document').ready(function(){
         .append($progressBar)
         .append($xpWrapper);
 
-      $progression.velocity({width: percentage+'%'}, {duration: 1500});
+      $progression.velocity({width: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
 
     }
 
@@ -180,15 +281,45 @@ $('document').ready(function(){
       });
     }
 
-    function findFullData(){
+    function findInventory(id){
       $.ajax({
         type: 'GET',
-        url: '/destinyINVENTORY',
+        url: '/destinyINVENTORY/'+id+'/'+membershipId,
       }).done(function(data){
           if(data){
             data = jQuery.parseJSON(data)
-            console.log('more detailed data');
-            console.dir(data.Response.data);
+            console.log('detailed inventory:');
+            console.dir(data.Response.data);//to check detailed descriptors remove the last .data
+          }else{
+            console.log('nope');
+          }
+      });
+    }
+
+    function findActivities(id){
+      $.ajax({
+        type: 'GET',
+        url: '/destinyACTIVITIES/'+id+'/'+membershipId,
+      }).done(function(data){
+          if(data){
+            data = jQuery.parseJSON(data)
+            console.log('detailed activities:');
+            console.dir(data.Response.data);//to check detailed descriptors remove the last .data
+          }else{
+            console.log('nope');
+          }
+      });
+    }
+
+    function findProgression(id){
+      $.ajax({
+        type: 'GET',
+        url: '/destinyPROGRESSION/'+id+'/'+membershipId,
+      }).done(function(data){
+          if(data){
+            data = jQuery.parseJSON(data)
+            console.log('detailed progression:');
+            console.dir(data.Response);//to check detailed descriptors remove the last .data
           }else{
             console.log('nope');
           }
@@ -218,7 +349,7 @@ $('document').ready(function(){
 
     function getInventory(id){
 
-      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Inventory/';
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Inventory/?definitions=true';
       $.ajax({
         type: 'POST',
         url: '/proxyJSON',
@@ -239,7 +370,7 @@ $('document').ready(function(){
 
     function getProgression(id){
 
-      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Progression/';
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Progression/?definitions=true';
       $.ajax({
         type: 'POST',
         url: '/proxyJSON',
@@ -260,7 +391,7 @@ $('document').ready(function(){
 
     function getActivities(id){
 
-      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Activities/';
+      var url = 'http://www.bungie.net/Platform/Destiny/'+accountType+'/Account/'+membershipId+'/Character/'+id+'/Activities/?definitions=true';
       $.ajax({
         type: 'POST',
         url: '/proxyJSON',
@@ -284,13 +415,25 @@ $('document').ready(function(){
       getMemberShipId();
     });
 
+    $guardianStatsWrapper.on('click', '.close', function(){
+      $guardianStatsWrapper.hide();
+      $('.guardian_stats_wrapper *').remove();
+    });
+
     $guardianWrapper.on('click', '.guardian_image', function(){
       var id = $(this).attr('guardian-id');
       console.log('guardian-id: '+id);
+      $('.guardian_image[guardian-id="'+id+'"] *').remove();
+      if($guardianStatsWrapper.css('display') === 'block'){
+        $guardianStatsWrapper.fadeOut();
+        $('.guardian_stats_wrapper *').remove();
+      }
       getInventory(id);
       getProgression(id);
       getActivities(id);
-      findFullData();
+      //findInventory(id);
+      //findActivities(id);
+      //findProgression(id);
     });
 
     $guardianWrapper.on('click', '.progression', function(event){
@@ -300,4 +443,6 @@ $('document').ready(function(){
     });
 
 
+    // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/
+    // http://www.bungie.net/Platform/Destiny/Manifest/inventoryItem/144553854/
 });

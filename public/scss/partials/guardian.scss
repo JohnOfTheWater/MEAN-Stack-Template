@@ -5,8 +5,9 @@
   top: 25%;
   left: 5%;
   right: 5%;
-  bottom: 5%;
+  //bottom: 5%;
   background: #333;
+  margin-bottom: 50px;
 }
 
 .guardian_image{
@@ -70,4 +71,56 @@ margin: 0;
 margin-bottom: 20px;
 text-shadow: 1px 1px 5px gold;
 text-transform: uppercase;
+}
+.guardian_stats_wrapper{
+  outline: 2px solid #FFF;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  right: 10%;
+  background: #888;
+  .close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #000000, -1px -1px 1px #000000;
+  }
+}
+.faction{
+  float: left;
+  margin: 20px 20px 0;
+  height: 165px;
+  .faction_icon{
+    width: 75px;
+    height: 75px;
+    outline: 1px solid #FFF;
+    margin-bottom: 10px;
+    //background-size: cover;
+  }
+  .faction_progress_bar{
+    width: 400px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    outline: 2px solid #222;
+    margin: 0 auto;
+  }
+  .faction_progression{
+    height: 30px;
+    background: gold;
+  }
+  .numeric_progression{
+    position: relative;
+    bottom: 160px;
+    left: 100px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px aliceblue;
+    width: 300px;
+    line-height: 25px;
+  }
+  .rank{
+    position: relative;
+    bottom: 15px;
+  }
 }
