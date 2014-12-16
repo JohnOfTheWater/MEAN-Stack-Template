@@ -178,7 +178,7 @@ $('document').ready(function(){
           
         });
         var $close = $('<div>');
-        $close.addClass('close').text('x');
+        $close.addClass('close_stats').text('x');
         $guardianStatsWrapper.append($close).fadeIn();
       
       }, 1500);
@@ -415,7 +415,7 @@ $('document').ready(function(){
       getMemberShipId();
     });
 
-    $guardianStatsWrapper.on('click', '.close', function(){
+    $guardianStatsWrapper.on('click', '.close_stats', function(){
       $guardianStatsWrapper.hide();
       $('.guardian_stats_wrapper *').remove();
     });

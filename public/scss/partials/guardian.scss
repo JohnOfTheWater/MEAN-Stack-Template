@@ -79,7 +79,7 @@ text-transform: uppercase;
   left: 10%;
   right: 10%;
   background: #888;
-  .close{
+  .close_stats{
     position: absolute;
     top: 5px;
     right: 5px;
@@ -87,6 +87,13 @@ text-transform: uppercase;
     text-transform: uppercase;
     text-shadow: 1px 1px 1px #000000, -1px -1px 1px #000000;
     z-index: 10000;
+    font-size: 20px;
+    border: 1px solid;
+    padding: 0px 8px;
+    border-radius: 3em;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
   }
 }
 .faction{
