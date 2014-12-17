@@ -246,13 +246,14 @@ $('document').ready(function(){
 
 
       $xpWrapper.append($xpTotal).append($xpDaily).append($xpWeekly);
-      $progressBar.append($progression);
-      $('.guardian_image[guardian-id="'+id+'"]')
-        .append($progressBar)
-        .append($xpWrapper);
+      setTimeout(function(){
+        $progressBar.append($progression);
+        $('.guardian_image[guardian-id="'+id+'"]')
+          .append($progressBar)
+          .append($xpWrapper);
 
-      $progression.velocity({width: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
-
+        $progression.velocity({width: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
+      }, 1000);
     }
 
     function displayActivities(res, id){
