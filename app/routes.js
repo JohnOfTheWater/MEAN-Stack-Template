@@ -1,4 +1,5 @@
 var Todo = require('./models/todo');
+var Gamertag = require('./models/gamertag');
 var request = require('request');
 var Destiny = require('destiny-client')(/* { host: 'http://localhost:9000' } */);
 
@@ -20,6 +21,20 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/api/gamertags', function(req, res) {
+    console.log('get gamertags...');
+
+		// use mongoose to get all todos in the database
+		Gamertag.find(function(err, gamertags) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(gamertags); // return all todos in JSON format
+		});
+	});
+
 	// create todo and send back all todos after creation
 	app.post('/api/todos', function(req, res) {
 
@@ -37,6 +52,27 @@ module.exports = function(app) {
 				if (err)
 					res.send(err)
 				res.json(todos);
+			});
+		});
+
+	});
+
+	app.post('/api/gamertags', function(req, res) {
+
+		// create a gamertag, information comes from AJAX request from Angular
+		Gamertag.create({
+			name : req.body.name,
+			account : req.body.account,
+			done : false
+		}, function(err, gamertag) {
+			if (err)
+				res.send(err);
+
+			// get and return all the gamertags after creating another
+			Gamertag.find(function(err, gamertags) {
+				if (err)
+					res.send(err)
+				res.json(gamertags);
 			});
 		});
 
@@ -110,6 +146,22 @@ module.exports = function(app) {
 				if (err)
 					res.send(err)
 				res.json(todos);
+			});
+		});
+	});
+
+	app.delete('/api/gamertags/:gamertag_id', function(req, res) {
+		Gamertag.remove({
+			_id : req.params.gamertag_id
+		}, function(err, gamertag) {
+			if (err)
+				res.send(err);
+
+			// get and return all the todos after you create another
+			Gamertag.find(function(err, gamertags) {
+				if (err)
+					res.send(err)
+				res.json(gamertags);
 			});
 		});
 	});

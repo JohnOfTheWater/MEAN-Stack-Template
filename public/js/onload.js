@@ -442,6 +442,12 @@ $('document').ready(function(){
       $(this).parent().next().css('z-index', '2').velocity({opacity: 1});
     });
 
+    $input.keypress(function (e) {
+      if (e.which == 13 && $input.val() != '') {
+        getMemberShipId();
+      }
+    }); 
+
 
     // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/
     // http://www.bungie.net/Platform/Destiny/Manifest/inventoryItem/144553854/

@@ -1,58 +1,54 @@
-angular.module('todoController', [])
+angular.module('gamertagController', [])
 
-	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
+	// inject the Gamertag service factory into the controller
+	.controller('mainController', ['$scope','$http','Gamertags', function($scope, $http, Gamertags) {
 		$scope.formData = {};
 		$scope.loading = true;
 
 		// GET =====================================================================
-		// when landing on the page, get all todos and show them
-		// use the service to get all the todos
+		// when landing on the page, get all gamertags and show them
+		// use the service to get all the gamertags
     //setTimeout(function(){
-      Todos.get()
+      Gamertags.get()
         .success(function(data) {
-          $scope.todos = data;
+          $scope.gamertags = data;
           $scope.loading = false;
         });
     //}, 2000);
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
-		$scope.createTodo = function() {
+		$scope.createGamertag = function() {
 			$scope.loading = true;
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.title != undefined) {
+			if ($scope.formData.name != undefined) {
 				console.log($scope.formData);
 				// call the create function from our service (returns a promise object)
-				Todos.create($scope.formData)
+				Gamertags.create($scope.formData)
 
-					// if successful creation, call our get function to get all the new todos
+					// if successful creation, call our get function to get all the new gamertags
 					.success(function(data) {
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.todos = data; // assign our new list of todos
+						$scope.gamertags = data; // assign our new list of gamertags
 					});
 			}
 		};
 
 		// DELETE ==================================================================
-		// delete a todo after checking it
-		$scope.deleteTodo = function(id) {
+		// delete a gamertag
+		$scope.deleteGamertag = function(id) {
 			$scope.loading = true;
 
-			Todos.delete(id)
-				// if successful creation, call our get function to get all the new todos
+			Gamertags.delete(id)
+				// if successful creation, call our get function to get all the new gamertags
 				.success(function(data) {
 					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
+					$scope.gamertags = data; // assign our new list of gamertags
 				});
 		};
 
   
-		// GET =====================================================================
-		// get json for  
-		// 
-
 	}]);

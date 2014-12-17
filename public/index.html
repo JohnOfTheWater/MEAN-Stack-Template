@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="scotchGamertag">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -26,6 +26,7 @@
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/services/gamertags.js"></script> <!-- load gamertag service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
 	<script src="js/vendor/head.js"></script>
 	<script src="js/vendor/jquery.min.js"></script>
@@ -38,11 +39,11 @@
 </head>
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
-	<div class="container" style='display:none'>
+	<div class="container" style=''>
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Welcome <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>Welcome <span class="label label-info">{{ gamertags.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -52,11 +53,11 @@
 				
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<h2>{{todo.title}}</h2>
-					<h3>{{todo.body}}</h3>
-					<h4>{{todo.date}}</h4>
-					<input type="checkbox" ng-click="deleteTodo(todo._id)">
+				<div class="checkbox" ng-repeat="gamertag in gamertags">
+					<h2>{{gamertag.name}}</h2>
+					<h3>{{gamertag.account}}</h3>
+					<h4>{{gamertag.date}}</h4>
+          <input type="checkbox" ng-click="deleteGamertag(gamertag._id)">
 				</div>
 
 				<p class="text-center" ng-show="loading">
@@ -73,12 +74,12 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUES TO formData IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="the title of my todo" ng-model="formData.title">
-						<input type="text" class="form-control input-lg text-center" placeholder="some text here..." ng-model="formData.body">
+						<input type="text" class="form-control input-lg text-center" placeholder="enter gamertag" ng-model="formData.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="psn or xboxlive" ng-model="formData.account">
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createGamertag()">Add</button>
 				</form>
 			</div>
 		</div>
