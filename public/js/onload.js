@@ -6,11 +6,12 @@ $('document').ready(function(){
     $button = $('.submit_search'),
     membershipId,
     accountType = 'TigerPSN',
-    characterId = '2305843009215383036', //titan
     $guardianWrapper = $('.guardian_wrapper'),
     $guardianStatsWrapper = $('.guardian_stats_wrapper'),
-    $close = $('.close');
-    username = 'IBlackGolemI';
+    $close = $('.close'),
+    $burgerIcon = $('.burger_icon'),
+    $gamertagTab = $('.gamertag_tab'),
+    $gamertags = $('.gamertags');
     //url = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/',
     //url1 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Inventory/',
     //url2 = 'http://www.bungie.net/en/Legend/' + membershipType + '/' + membershipId + '/' + characterId,
@@ -90,6 +91,7 @@ $('document').ready(function(){
     $input.focus();
     $guardianWrapper.hide();
     $guardianStatsWrapper.hide();
+    $gamertags.hide();
 
    
     function generateCharacters(res){
@@ -447,6 +449,24 @@ $('document').ready(function(){
         getMemberShipId();
       }
     }); 
+
+    $burgerIcon.click(function(e){
+      if(!$gamertags.hasClass('open')){
+        $gamertags.fadeIn();
+        $gamertags.addClass('open');
+      }else if($gamertags.hasClass('open')){
+        $gamertags.fadeOut();
+        $gamertags.removeClass('open');
+      }
+    });
+
+    $gamertags.on('click', '.gamertag_tab', function(){
+      var gamertag = $(this).find('h2').text();
+      $input.val(gamertag);
+      $gamertags.fadeOut();
+      $gamertags.removeClass('open');
+      getMemberShipId();
+    });
 
 
     // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/

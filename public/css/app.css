@@ -9,6 +9,13 @@
   width: 350px;
 }
 
+/* line 10, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/form.scss */
+.search_button {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
 /* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .guardian_wrapper {
   position: absolute;
@@ -166,7 +173,74 @@
   bottom: 15px;
 }
 
-/* line 4, ../app.scss */
+/* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/navbar.scss */
+.nav_bar {
+  width: 100%;
+  height: 60px;
+  background: #333;
+  margin: 0px 0 7px;
+}
+
+/* line 7, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/navbar.scss */
+.burger_icon {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  float: right;
+  position: relative;
+  top: 3px;
+  right: 15px;
+}
+
+/* line 1, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/gamertags.scss */
+.gamertag_tab {
+  outline: 1px solid;
+  background: url("../../img/digital_background.jpg");
+  background-size: cover;
+  width: 300px;
+  margin: 0 auto 20px;
+  padding: 5px;
+  cursor: pointer;
+}
+/* line 9, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/gamertags.scss */
+.gamertag_tab:hover {
+  outline: 2px solid crimson;
+}
+/* line 12, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/gamertags.scss */
+.gamertag_tab h2 {
+  color: blanchedalmond;
+  text-shadow: 1px 1px 9px gold;
+  margin: 0;
+}
+/* line 17, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/gamertags.scss */
+.gamertag_tab h3 {
+  margin: 0px;
+  color: crimson;
+  text-align: right;
+  font-size: 15px;
+}
+
+/* line 6, ../app.scss */
 .jumbotron {
   color: #333;
+  padding: 10px;
+  font-size: 21px;
+  font-weight: 200;
+  background-color: #eee;
+  margin-bottom: 10px;
+}
+/* line 13, ../app.scss */
+.jumbotron h1 {
+  margin: 0;
+}
+/* line 16, ../app.scss */
+.jumbotron .label {
+  position: relative;
+  bottom: 4px;
+}
+
+/* line 21, ../app.scss */
+.container {
+  padding: 0;
+  margin: 0;
 }

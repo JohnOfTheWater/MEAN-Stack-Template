@@ -16,7 +16,6 @@
 	<link rel="stylesheet" href="css/app.css">
 	<style>
 		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
 	</style>
@@ -40,51 +39,41 @@
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
 	<div class="container" style=''>
+    <div class='nav_bar'>
+      <img class='burger_icon' src="img/burger.svg"> 
+    </div>
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Welcome <span class="label label-info">{{ gamertags.length }}</span></h1>
+			<h1>Gamertags <span class="label label-info">{{ gamertags.length }}</span></h1>
 		</div>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+		<!-- GAMERTAG LIST -->
 
-				
+    <!-- LOOP OVER THE GAMERTAGS IN $scope.gamertags -->
+      <div class='gamertags'>
+        <div class="checkbox gamertag_tab" ng-repeat="gamertag in gamertags">
+          <h2>{{gamertag.name}}</h2>
+          <h3>{{gamertag.account}}</h3>
+          <!-- <h4>{{gamertag.date | date:'medium'}}</h4> -->
+          <!-- <input type="checkbox" ng-click="deleteGamertag(gamertag._id)"> -->
+        </div>
 
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="gamertag in gamertags">
-					<h2>{{gamertag.name}}</h2>
-					<h3>{{gamertag.account}}</h3>
-					<h4>{{gamertag.date}}</h4>
-          <input type="checkbox" ng-click="deleteGamertag(gamertag._id)">
-				</div>
+        <p class="text-center" ng-show="loading">
+          <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </p>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
+        <form>
+          <div class="form-group">
+            <!-- BIND THIS VALUES TO formData IN ANGULAR -->
+            <input type="text" class="form-control input-lg text-center" placeholder="enter gamertag" ng-model="formData.name">
+            <input type="text" class="form-control input-lg text-center" placeholder="psn or xboxlive" ng-model="formData.account">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg search_button" ng-click="createGamertag()">Add</button>
+        </form>
 
-			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUES TO formData IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="enter gamertag" ng-model="formData.name">
-						<input type="text" class="form-control input-lg text-center" placeholder="psn or xboxlive" ng-model="formData.account">
-					</div>
-
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createGamertag()">Add</button>
-				</form>
-			</div>
-		</div>
-
-	</div>
+      </div>
+    </div> <!-- end of container -->
   <section class='search_wrapper'>
             <i class='psn'></i>
             <i class='xbl'></i>
