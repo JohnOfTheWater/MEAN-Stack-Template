@@ -111,6 +111,7 @@ $('document').ready(function(){
             $level = $('<h3>');
 
         $image.addClass('guardian_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover')
+          .css('background-position','center')
           .attr('guardian-id', guardian.characterBase.characterId);
         $level.addClass('level_class').text(guardian.characterLevel);
 
@@ -238,7 +239,7 @@ $('document').ready(function(){
           $xpWeekly = $('<h3>');
 
       $progressBar.addClass('progress_bar');
-      $progression.addClass('progression').css('width', '0');//.css('width', percentage+'%');
+      $progression.addClass('progression').css('height', '0');//.css('width', percentage+'%');
       $xpWrapper.addClass('xp_wrapper').css('position', 'absolute');
       $xpTotal.addClass('xp_total').text('all time xp: '+totalXp);
       $xpDaily.addClass('xp_daily').text('daily xp: '+dailyXp);
@@ -252,7 +253,7 @@ $('document').ready(function(){
           .append($progressBar)
           .append($xpWrapper);
 
-        $progression.velocity({width: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
+        $progression.velocity({height: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
       }, 1000);
     }
 

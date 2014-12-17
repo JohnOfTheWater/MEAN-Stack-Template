@@ -21,31 +21,32 @@
   position: absolute;
   outline: 1px solid;
   top: 25%;
-  left: 5%;
-  right: 5%;
+  left: 2%;
+  right: 2%;
   background: #333;
   margin-bottom: 50px;
 }
 
 /* line 13, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .guardian_image {
-  width: 28em;
-  height: 20em;
+  outline: 2px solid #777;
+  width: 100%;
+  height: 400px;
   float: left;
-  margin: 10px;
+  margin-top: 10px;
   position: relative;
 }
 
-/* line 21, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 22, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .level_class {
   color: #FFF;
   font-size: 1.9em;
-  position: relative;
-  top: 80%;
-  left: 90%;
+  position: absolute;
+  top: 340px;
+  right: 20px;
 }
 
-/* line 28, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 29, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .currency_image {
   width: 4em;
   height: 4em;
@@ -53,35 +54,41 @@
   margin: 10px;
   border: 1.5px solid #FFF;
   position: relative;
-  top: 120px;
+  top: 200px;
   left: 10px;
 }
 
-/* line 38, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 39, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .currency_text {
   position: relative;
   top: 1.7em;
   color: #FFF;
 }
 
-/* line 43, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 44, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .progress_bar {
-  width: 90%;
-  height: 30px;
+  height: 90%;
+  width: 30px;
   background: rgba(255, 255, 255, 0.4);
   outline: 2px solid #222;
   margin: 0 auto;
   position: relative;
-  top: 230px;
+  top: 30px;
+  left: 120px;
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
 }
 
-/* line 52, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 57, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .progression {
-  height: 30px;
+  width: 30px;
   background: crimson;
 }
 
-/* line 56, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 61, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .xp_wrapper {
   position: absolute;
   background: #e3e3e3;
@@ -96,7 +103,7 @@
   z-index: -1;
 }
 
-/* line 69, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 74, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .xp_total, .xp_daily, .xp_weekly {
   color: crimson;
   margin: 0;
@@ -105,60 +112,62 @@
   text-transform: uppercase;
 }
 
-/* line 76, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 81, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .guardian_stats_wrapper {
   outline: 2px solid #FFF;
   position: absolute;
   top: 20%;
-  left: 10%;
-  right: 10%;
+  left: 2%;
+  right: 2%;
   background: #888;
 }
-/* line 83, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 88, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .guardian_stats_wrapper .close_stats {
   position: absolute;
   top: 5px;
   right: 5px;
-  color: white;
+  color: #111;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px #000000, -1px -1px 1px #000000;
+  text-shadow: 1px 1px 1px #FFF, -1px -1px 1px #FFF;
   z-index: 10000;
   font-size: 20px;
   border: 1px solid;
-  padding: 0px 8px;
+  padding: 3px 0 0 10px;
   border-radius: 3em;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
+  background: #FFF;
 }
 
-/* line 100, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 106, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction {
   float: left;
   margin: 20px 20px 0;
   height: 165px;
+  width: 100%;
 }
-/* line 104, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 111, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_icon {
   width: 75px;
   height: 75px;
   outline: 1px solid #FFF;
   margin-bottom: 10px;
 }
-/* line 111, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 118, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_progress_bar {
-  width: 400px;
+  width: 100%;
   height: 30px;
   background: rgba(255, 255, 255, 0.4);
   outline: 2px solid #222;
   margin: 0 auto;
 }
-/* line 118, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 125, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_progression {
   height: 30px;
   background: gold;
 }
-/* line 122, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 129, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .numeric_progression {
   position: relative;
   bottom: 160px;
@@ -168,7 +177,7 @@
   width: 300px;
   line-height: 25px;
 }
-/* line 131, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 138, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .rank {
   position: relative;
   bottom: 15px;
