@@ -259,9 +259,16 @@ $('document').ready(function(){
       }, 1000);
     }
 
-    function displayActivities(res, id){
-      console.log('activities: ');
+    function displayAggregateActivities(res, id){
+      console.log('aggregated activities: ');
       console.dir(res);
+      var i = 0;
+      //console.log(res.definitions.activities[149381097].activityName);
+      res.data.activities.forEach(function(){
+        console.log('activity name: '+res.definitions.activities[res.data.activities[i].activityHash].activityName);
+        console.log('kills:'+res.data.activities[i].values.activityKills.basic.displayValue);
+          i+=1;
+      });
     }
 
     function getMemberShipId(){
@@ -416,11 +423,6 @@ $('document').ready(function(){
       });
     }
 
-    function displayAggregateActivities(data){
-      console.log('displayAggregateActivities:');
-      console.dir(data);
-    }
-
     function getAggregateActivities(id){
       // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/
       var url = 'http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/'+accountType+'/'+membershipId+'/'+id+'/?definitions=true';
@@ -462,7 +464,7 @@ $('document').ready(function(){
       }
       getInventory(id);
       getProgression(id);
-      getActivities(id);
+      //getActivities(id);
       getAggregateActivities(id);
       //findInventory(id);
       //findActivities(id);
