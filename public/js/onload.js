@@ -12,6 +12,7 @@ $('document').ready(function(){
     $burgerIcon = $('.burger_icon'),
     $gamertagTab = $('.gamertag_tab'),
     $gamertagsH1 = $('.jumbotron h1'),
+    $xpStats,
     $gamertags = $('.gamertags');
     //url = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/',
     //url1 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Inventory/',
@@ -490,6 +491,10 @@ $('document').ready(function(){
     }
 
     $burgerIcon.add($gamertagsH1).click(showGamertags);
+
+    $guardianWrapper.on('click', '.xp_wrapper', function(){
+      $('.xp_wrapper').css('z-index','0').velocity({opacity: 0});
+    });
 
     $gamertags.on('click', '.gamertag_tab', function(){
       var gamertag = $(this).find('h2').text();
