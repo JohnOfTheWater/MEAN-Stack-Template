@@ -11,6 +11,7 @@ $('document').ready(function(){
     $close = $('.close'),
     $burgerIcon = $('.burger_icon'),
     $gamertagTab = $('.gamertag_tab'),
+    $gamertagsH1 = $('.jumbotron h1'),
     $gamertags = $('.gamertags');
     //url = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/',
     //url1 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Inventory/',
@@ -414,6 +415,32 @@ $('document').ready(function(){
       });
     }
 
+    function displayAggregateActivities(data){
+      console.log('displayAggregateActivities:');
+      console.dir(data);
+    }
+
+    function getAggregateActivities(id){
+      // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/
+      var url = 'http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/'+accountType+'/'+membershipId+'/'+id+'/?definitions=true';
+      $.ajax({
+        type: 'POST',
+        url: '/proxyJSON',
+        data: JSON.stringify({targetUrl: url}),
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json'
+      }).done(function(data) {
+        if(data.Response) {
+          console.log('retrieving aggregate activities.... '+data.ErrorStatus+'!');
+          displayAggregateActivities(data.Response, id);
+        } else {
+          console.log('failure');
+        }
+      }).fail(function () {
+        console.log('errUnableToConnect');
+      });
+    }
+
 
     $button.click(function(){
       getMemberShipId();
@@ -435,6 +462,7 @@ $('document').ready(function(){
       getInventory(id);
       getProgression(id);
       getActivities(id);
+      getAggregateActivities(id);
       //findInventory(id);
       //findActivities(id);
       //findProgression(id);
@@ -442,7 +470,6 @@ $('document').ready(function(){
 
     $guardianWrapper.on('click', '.progression', function(event){
       event.stopPropagation();
-      console.log('ciao');
       $(this).parent().next().css('z-index', '2').velocity({opacity: 1});
     });
 
@@ -452,7 +479,7 @@ $('document').ready(function(){
       }
     }); 
 
-    $burgerIcon.click(function(e){
+    function showGamertags(e){
       if(!$gamertags.hasClass('open')){
         $gamertags.fadeIn();
         $gamertags.addClass('open');
@@ -460,7 +487,9 @@ $('document').ready(function(){
         $gamertags.fadeOut();
         $gamertags.removeClass('open');
       }
-    });
+    }
+
+    $burgerIcon.add($gamertagsH1).click(showGamertags);
 
     $gamertags.on('click', '.gamertag_tab', function(){
       var gamertag = $(this).find('h2').text();
@@ -471,6 +500,5 @@ $('document').ready(function(){
     });
 
 
-    // http://www.bungie.net/platform/Destiny/Stats/AggregateActivityStats/2/4611686018429149347/2305843009215132906/
     // http://www.bungie.net/Platform/Destiny/Manifest/inventoryItem/144553854/
 });
