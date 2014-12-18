@@ -139,16 +139,17 @@
   height: 35px;
   cursor: pointer;
   background: #FFF;
+  margin: 0 0 30px 30px;
 }
 
-/* line 107, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 108, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction {
   float: left;
   margin: 20px 0;
   height: 165px;
   width: 310px;
 }
-/* line 112, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 113, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_icon {
   width: 75px;
   height: 75px;
@@ -156,7 +157,7 @@
   margin-bottom: 10px;
   margin-left: 10px;
 }
-/* line 120, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 121, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_progress_bar {
   width: 280px;
   height: 30px;
@@ -164,12 +165,12 @@
   outline: 2px solid #222;
   margin: 0 auto;
 }
-/* line 127, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 128, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .faction_progression {
   height: 30px;
   background: gold;
 }
-/* line 131, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 132, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .numeric_progression {
   position: relative;
   bottom: 180px;
@@ -179,7 +180,7 @@
   width: 200px;
   line-height: 25px;
 }
-/* line 140, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
+/* line 141, ../../../../../../../Users/giovannidelacqua/Documents/code/javascript/project/destiny2/public/scss/partials/guardian.scss */
 .faction .rank {
   position: relative;
   bottom: 15px;

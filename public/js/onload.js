@@ -447,7 +447,7 @@ $('document').ready(function(){
       getMemberShipId();
     });
 
-    $guardianStatsWrapper.on('click', '.close_stats', function(){
+    $guardianStatsWrapper.on('click touchend', '.close_stats', function(){
       $guardianStatsWrapper.hide();
       $('.guardian_stats_wrapper *').remove();
     });
@@ -491,6 +491,10 @@ $('document').ready(function(){
     }
 
     $burgerIcon.add($gamertagsH1).click(showGamertags);
+    //other way
+    //  $(document).on("click touchend", ".class1, .class2, .class3", function () {
+    //    do stuff
+    //  });
 
     $guardianWrapper.on('click', '.xp_wrapper', function(){
       $('.xp_wrapper').css('z-index','0').velocity({opacity: 0});
