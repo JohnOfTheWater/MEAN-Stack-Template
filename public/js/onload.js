@@ -6,6 +6,8 @@ $('document').ready(function(){
     $button = $('.submit_search'),
     membershipId,
     accountType = 'TigerPSN',
+    emblemPath,
+    backgroundPath,
     $guardianWrapper = $('.guardian_wrapper'),
     $guardianStatsWrapper = $('.guardian_stats_wrapper'),
     $close = $('.close'),
@@ -18,6 +20,7 @@ $('document').ready(function(){
     //url1 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Inventory/',
     //url2 = 'http://www.bungie.net/en/Legend/' + membershipType + '/' + membershipId + '/' + characterId,
     //url3 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Progression/';
+    //http://static01.bungie.net 
   
     //console.log(url2); // pretty bungie link
     //console.log(url1); //inventory
@@ -100,7 +103,11 @@ $('document').ready(function(){
       res.characters.forEach(function(guardian){
 
         var gClass = guardian.characterBase.classHash,
-            imgPath;
+            imgPath,
+        emblemPath = 'http://static01.bungie.net/'+guardian.emblemPath,
+        backgroundPath = 'http://static01.bungie.net/'+guardian.backgroundPath;
+        console.log(emblemPath);
+        console.log(backgroundPath);
         if(gClass === 3655393761){
           imgPath = '/img/destiny_titan.jpg';
         }else if(gClass === 2271682572){
@@ -110,14 +117,21 @@ $('document').ready(function(){
         }
 
         var $image = $('<div>'),
+            $emblem = $('<div>'),
+            $background = $('<div>'),
             $level = $('<h3>');
 
         $image.addClass('guardian_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover')
           .css('background-position','center')
           .attr('guardian-id', guardian.characterBase.characterId);
+        $emblem.addClass('emblem').css('background', 'url("'+emblemPath+'")').css('background-size', 'cover');
+        $background.addClass('emblem_background').css('background', 'url("'+backgroundPath+'")').css('background-size', 'cover');
         $level.addClass('level_class').text(guardian.characterLevel);
 
-        $image.append($level);
+        $background
+          .append($emblem)
+          .append($level);
+        $image.append($background);
         $guardianWrapper.append($image);
         
       });
