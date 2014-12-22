@@ -16,7 +16,7 @@
 
 .guardian_image{
   outline: 2px solid #FFF;
-  width: 100%;
+  width: 309px;
   height: 400px;
   float: left;
   margin-top: 10px;
@@ -25,7 +25,7 @@
     width: 100%;
     height: 75px;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     border-top: 1px solid #FFF;
   }
   .emblem{
@@ -38,11 +38,63 @@
 }
 
 .level_class{
+  font-size: 35px;
+  position: relative;
+  bottom: 13px;
+  left: 260px;
+  z-index: 5;
+  color: gold;
+}
+.level_icon{
+  color: gold;
+  z-index: 5;
+  position: relative;
+  bottom: 47px;
+  left: 240px;
+}
+.guardian_progress_bar{
+width: 307px;
+height: 15px;
+background: rgba(255, 255, 255, 0.4);
+outline: 1px solid #222;
+margin: 0 auto;
+position: relative;
+bottom: 80px;
+left: 0px;
+}
+.mote_progress_bar{
+width: 307px;
+height: 15px;
+background: rgba(255, 255, 255, 0.4);
+outline: 1px solid #222;
+margin: 0 auto;
+position: relative;
+bottom: 80px;
+left: 0px;
+}
+.mote_progression{
+height: 15px;
+background: cornflowerblue;
+}
+.guardian_progression{
+height: 15px;
+background: gold;
+}
+.grimoire_icon{
+  z-index: 5;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  bottom: 42px;
+  left: 230px;
+}
+.grimoire_points {
+  z-index: 5;
+  position: relative;
+  bottom: 82px;
+  left: 259px;
   color: #FFF;
-  font-size: 1.9em;
-  position: absolute;
-  top: 340px;
-  right: 20px;
+  font-size: 16px;
 }
 .currency_image{
   width: 60px;
@@ -104,6 +156,7 @@ text-transform: uppercase;
   right: 5px;
   width: 310px;
   background: #888;
+  z-index: 6;
   .close_stats{
     position: absolute;
     top: 5px;

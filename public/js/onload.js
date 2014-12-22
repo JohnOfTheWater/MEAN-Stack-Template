@@ -119,7 +119,16 @@ $('document').ready(function(){
         var $image = $('<div>'),
             $emblem = $('<div>'),
             $background = $('<div>'),
-            $level = $('<h3>');
+            $level = $('<h3>'),
+            $grimoireIcon = $('<div>'),
+            $grimoirePoints = $('<h3>'),
+            $guardianProgressBar = $('<div>'),
+            $guardianProgression = $('<div>'),
+            $levelIcon = $('<div>');
+            $moteProgressBar = $('<div>'),
+            $moteProgression = $('<div>');
+        var percentage = guardian.percentToNextLevel;
+        var percentage2 = (guardian.levelProgression.progressToNextLevel/guardian.levelProgression.nextLevelAt)*100;
 
         $image.addClass('guardian_image').css('background', 'url("'+imgPath+'")').css('background-size', 'cover')
           .css('background-position','center')
@@ -127,12 +136,29 @@ $('document').ready(function(){
         $emblem.addClass('emblem').css('background', 'url("'+emblemPath+'")').css('background-size', 'cover');
         $background.addClass('emblem_background').css('background', 'url("'+backgroundPath+'")').css('background-size', 'cover');
         $level.addClass('level_class').text(guardian.characterLevel);
+        $grimoireIcon.addClass('grimoire_icon').css('background', 'url("http://static01.bungie.net/img/theme/destiny/icons/icon_grimoire_lightgray.png")').css('background-size', 'cover');
+        $levelIcon.addClass('level_icon').text('\u2726');
+        $grimoirePoints.addClass('grimoire_points').text(guardian.characterBase.grimoireScore);
+        $guardianProgressBar.addClass('guardian_progress_bar');
+        $guardianProgression.addClass('guardian_progression').css('width', '0');//.css('width', percentage+'%');
+        $moteProgressBar.addClass('mote_progress_bar');
+        $moteProgression.addClass('mote_progression').css('width', '0');//.css('width', percentage+'%');
 
+        $guardianProgressBar.append($guardianProgression)
+        $moteProgressBar.append($moteProgression)
         $background
           .append($emblem)
-          .append($level);
+          .append($level)
+          .append($levelIcon)
+          .append($grimoireIcon)
+          .append($grimoirePoints)
+          .append($guardianProgressBar)
+          .append($moteProgressBar);
         $image.append($background);
         $guardianWrapper.append($image);
+
+        $guardianProgression.velocity({width: percentage+'%'}, {duration: 1000});
+        $moteProgression.velocity({width: percentage2+'%'}, {duration: 1000});
         
       });
 
@@ -471,7 +497,7 @@ $('document').ready(function(){
     $guardianWrapper.on('click', '.guardian_image', function(){
       var id = $(this).attr('guardian-id');
       console.log('guardian-id: '+id);
-      $('.guardian_image[guardian-id="'+id+'"] *').remove();
+      //$('.guardian_image[guardian-id="'+id+'"] *').remove();
       if($guardianStatsWrapper.css('display') === 'block'){
         $guardianStatsWrapper.fadeOut();
         $('.guardian_stats_wrapper *').remove();
