@@ -497,7 +497,7 @@ $('document').ready(function(){
     $guardianWrapper.on('click', '.guardian_image', function(){
       var id = $(this).attr('guardian-id');
       console.log('guardian-id: '+id);
-      //$('.guardian_image[guardian-id="'+id+'"] *').remove();
+      $('.guardian_image[guardian-id="'+id+'"] *').remove();
       if($guardianStatsWrapper.css('display') === 'block'){
         $guardianStatsWrapper.fadeOut();
         $('.guardian_stats_wrapper *').remove();
