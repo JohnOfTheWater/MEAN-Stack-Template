@@ -88,9 +88,9 @@ $('document').ready(function(){
     {'faction':1424722124, icon:'http://evernode.delacqua.us/img/johngmailcom/john/286329-rdtb4c.jpeg'},
     {'faction':2778795080, icon:'http://evernode.delacqua.us/img/johngmailcom/john/388329-spvb5..jpeg'},
     {'faction':3871980777, icon:'http://evernode.delacqua.us/img/johngmailcom/john/529329-1cqef4.jpg'},
-    {'faction':174528503, icon:'http://evernode.delacqua.us/img/johngmailcom/john/917329-zdpdjv.jpg'}
-    //{'faction':2033897742, icon:''},
-    //{'faction':2033897755, icon:''}
+    {'faction':174528503, icon:'http://evernode.delacqua.us/img/johngmailcom/john/917329-zdpdjv.jpg'},
+    {'faction':2033897742, icon:''},
+    {'faction':2033897755, icon:''}
    ];
 
     $input.focus();
@@ -183,40 +183,62 @@ $('document').ready(function(){
         
           _.find(selectedFactions, function(selectedFaction){
               if(selectedFaction.faction === fact.progressionHash){
+                if(fact.progressionHash === 2033897742 ){
+                  var $vanguardMarks = $('<h2>'),
+                      $vanguardMarksIcon = $('<div>');
+
+                  $vanguardMarks.addClass('vanguard_marks').text(fact.currentProgress+'/100');
+                  $vanguardMarksIcon.addClass('vanguard_marks_icon').css('background', 'url("http://static01.bungie.net/img/theme/destiny/icons/sprite_destiny_currencies.png")');
+
+                  $vanguardMarksIcon.append($vanguardMarks);
+                  $guardianStatsWrapper.append($vanguardMarksIcon);
+
+                }else if(fact.progressionHash === 2033897755){
+                  var $crucibleMarks = $('<h2>'),
+                      $crucibleMarksIcon = $('<div>');
+
+                  $crucibleMarks.addClass('crucible_marks').text(fact.currentProgress+'/100');
+                  $crucibleMarksIcon.addClass('crucible_marks_icon').css('background', 'url("http://static01.bungie.net/img/theme/destiny/icons/sprite_destiny_currencies.png")');
+
+                  $crucibleMarksIcon.append($crucibleMarks);
+                  $guardianStatsWrapper.append($crucibleMarksIcon);
+                  //http://static01.bungie.net/img/theme/destiny/icons/sprite_destiny_currencies.png
+                }else{
                 
-                var percentage = (fact.progressToNextLevel/fact.nextLevelAt)*100;
+                  var percentage = (fact.progressToNextLevel/fact.nextLevelAt)*100;
 
-                console.log('percentage:');
-                console.log(percentage);
-                var $faction = $('<section>'),
-                    $factionIcon = $('<div>'),
-                    $factionProgressBar = $('<div>'),
-                    $factionProgression = $('<div>'),
-                    $numericProgression = $('<h4>'),
-                    $rank = $('<h2>');
+                  console.log('percentage:');
+                  console.log(percentage);
+                  var $faction = $('<section>'),
+                      $factionIcon = $('<div>'),
+                      $factionProgressBar = $('<div>'),
+                      $factionProgression = $('<div>'),
+                      $numericProgression = $('<h4>'),
+                      $rank = $('<h2>');
 
-                $faction.attr('data-id', fact.progressionHash).addClass('faction');
-                $factionIcon.addClass('faction_icon')
-                  .css('background', 'url("'+selectedFaction.icon+'")')
-                  .css('background-size', 'cover')
-                  .attr('id', selectedFaction.faction);
-                $factionProgressBar.addClass('faction_progress_bar');
-                $factionProgression.addClass('faction_progression').css('width', '0');//.css('width', percentage+'%');
-                $numericProgression.addClass('numeric_progression').text(''+hashes.progressions[selectedFaction.faction]+': "'+fact.progressToNextLevel+'/'+fact.nextLevelAt+'"');
-                $rank.addClass('rank').text('Rank: '+fact.level);
-
-
-                $factionProgressBar.append($factionProgression);
-
-                $faction.append($factionIcon)
-                  .append($factionProgressBar)
-                  .append($rank)
-                  .append($numericProgression);
-
-                $guardianStatsWrapper.append($faction);
+                  $faction.attr('data-id', fact.progressionHash).addClass('faction');
+                  $factionIcon.addClass('faction_icon')
+                    .css('background', 'url("'+selectedFaction.icon+'")')
+                    .css('background-size', 'cover')
+                    .attr('id', selectedFaction.faction);
+                  $factionProgressBar.addClass('faction_progress_bar');
+                  $factionProgression.addClass('faction_progression').css('width', '0');//.css('width', percentage+'%');
+                  $numericProgression.addClass('numeric_progression').text(''+hashes.progressions[selectedFaction.faction]+': "'+fact.progressToNextLevel+'/'+fact.nextLevelAt+'"');
+                  $rank.addClass('rank').text('Rank: '+fact.level);
 
 
-                $factionProgression.velocity({width: percentage+'%'}, {duration: 1000});
+                  $factionProgressBar.append($factionProgression);
+
+                  $faction.append($factionIcon)
+                    .append($factionProgressBar)
+                    .append($rank)
+                    .append($numericProgression);
+
+                  $guardianStatsWrapper.append($faction);
+
+
+                  $factionProgression.velocity({width: percentage+'%'}, {duration: 1000});
+                }
               }
           
             });
@@ -497,7 +519,7 @@ $('document').ready(function(){
     $guardianWrapper.on('click', '.guardian_image', function(){
       var id = $(this).attr('guardian-id');
       console.log('guardian-id: '+id);
-      $('.guardian_image[guardian-id="'+id+'"] *').remove();
+      //$('.guardian_image[guardian-id="'+id+'"] *').remove();
       if($guardianStatsWrapper.css('display') === 'block'){
         $guardianStatsWrapper.fadeOut();
         $('.guardian_stats_wrapper *').remove();
