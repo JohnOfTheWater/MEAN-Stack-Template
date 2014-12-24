@@ -21,11 +21,11 @@ $('document').ready(function(){
     //url2 = 'http://www.bungie.net/en/Legend/' + membershipType + '/' + membershipId + '/' + characterId,
     //url3 = 'http://www.bungie.net/Platform/Destiny/' + accountType + '/Account/' + membershipId + '/Character/' + characterId + '/Progression/';
     //http://static01.bungie.net 
-  
+
     //console.log(url2); // pretty bungie link
     //console.log(url1); //inventory
     //console.log(url3); // progression
-    
+
    var hashes = {
       3159615086: 'glimmer',
       1415355184: 'crucible marks',
@@ -98,7 +98,7 @@ $('document').ready(function(){
     $guardianStatsWrapper.hide();
     $gamertags.hide();
 
-   
+
     function generateCharacters(res){
       res.characters.forEach(function(guardian){
 
@@ -159,7 +159,7 @@ $('document').ready(function(){
 
         $guardianProgression.velocity({width: percentage+'%'}, {duration: 1000});
         $moteProgression.velocity({width: percentage2+'%'}, {duration: 1000});
-        
+
       });
 
 
@@ -180,7 +180,7 @@ $('document').ready(function(){
         data = data.progressions;
         var i = 1; 
         data.forEach(function(fact){
-        
+
           _.find(selectedFactions, function(selectedFaction){
               if(selectedFaction.faction === fact.progressionHash){
                 if(fact.progressionHash === 2033897742 ){
@@ -204,7 +204,7 @@ $('document').ready(function(){
                   $guardianStatsWrapper.append($crucibleMarksIcon);
                   //http://static01.bungie.net/img/theme/destiny/icons/sprite_destiny_currencies.png
                 }else{
-                
+
                   var percentage = (fact.progressToNextLevel/fact.nextLevelAt)*100;
 
                   console.log('percentage:');
@@ -240,14 +240,14 @@ $('document').ready(function(){
                   $factionProgression.velocity({width: percentage+'%'}, {duration: 1000});
                 }
               }
-          
+
             });
-          
+
         });
         var $close = $('<div>');
         $close.addClass('close_stats').text('x');
         $guardianStatsWrapper.append($close).fadeIn();
-      
+
       }, 1500);
     }
 
@@ -266,12 +266,12 @@ $('document').ready(function(){
 
         if(currencyType === 'glimmer'){
           imgPath = glimmerPath;
-        }else if(currencyType === 'crucible marks'){
-          imgPath = crucibleMarksPath;
         }else if(currencyType === 'vanguard marks'){
           imgPath = vanguardMarksPath;
+        }else if(currencyType === 'crucible marks'){
+          imgPath = crucibleMarksPath;
         }
-        
+
         var $img = $('<div>'),
             $value = $('<h3>');
 
@@ -312,12 +312,15 @@ $('document').ready(function(){
 
       $xpWrapper.append($xpTotal).append($xpDaily).append($xpWeekly);
       setTimeout(function(){
+        /*
         $progressBar.append($progression);
         $('.guardian_image[guardian-id="'+id+'"]')
-          .append($progressBar)
+          //.append($progressBar)
           .append($xpWrapper);
 
         $progression.velocity({height: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
+        */
+        displayStats(res.data);
       }, 1000);
     }
 

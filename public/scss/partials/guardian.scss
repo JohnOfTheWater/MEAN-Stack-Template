@@ -22,6 +22,7 @@
   float: left;
   margin-top: 10px;
   position: relative;
+  cursor: pointer;
   .emblem_background{
     width: 100%;
     height: 75px;
@@ -104,13 +105,16 @@ background: gold;
   margin: 10px;
   border: 1.5px solid #FFF;
   position: relative;
-  top: 300px;
+  top: 190px;
   left: 10px;
+  margin-left: 20px;
 }
 .currency_text{
 position: relative;
 top: 1.7em;
 color: #FFF;
+text-align: center;
+text-shadow: 1px 1px 4px brown;
 }
 .progress_bar{
 height: 90%;
@@ -216,14 +220,33 @@ text-transform: uppercase;
   }
 }
 .vanguard_marks_icon{
-width: 34px;
-height: 34px;
-position: relative;
-background-position: -43px 0;
+  width: 36px;
+  height: 35px;
+  position: relative;
+  display: inline-block;
+  background-position: -43px 0 !important;
+  bottom: 20px;
+  left: 60px;
+  .vanguard_marks{
+    position: relative;
+    top: 15px;
+    right: 25px;
+    text-shadow: 1px 1px 4px aliceblue;
+  }
 }
 
 .crucible_marks_icon{
-width: 34px;
-height: 34px;
-position: relative;
+  width: 36px;
+  height: 35px;
+  position: relative;
+  display: inline-block;
+  background-position: 0 0 !important;
+  bottom: 20px;
+  left: 140px;
+  .crucible_marks{
+    position: relative;
+    right: 25px;
+    top: 15px;
+    text-shadow: 1px 1px 4px aliceblue;
+  }
 }
