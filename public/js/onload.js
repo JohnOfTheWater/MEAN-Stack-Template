@@ -266,10 +266,10 @@ $('document').ready(function(){
 
         if(currencyType === 'glimmer'){
           imgPath = glimmerPath;
-        }else if(currencyType === 'vanguard marks'){
-          imgPath = vanguardMarksPath;
         }else if(currencyType === 'crucible marks'){
           imgPath = crucibleMarksPath;
+        }else if(currencyType === 'vanguard marks'){
+          imgPath = vanguardMarksPath;
         }
 
         var $img = $('<div>'),
@@ -321,7 +321,7 @@ $('document').ready(function(){
         $progression.velocity({height: percentage+'%'}, {duration: 1500, complete: displayStats(res.data)});
         */
         displayStats(res.data);
-      }, 1000);
+      }, 500);
     }
 
     function displayAggregateActivities(res, id){
