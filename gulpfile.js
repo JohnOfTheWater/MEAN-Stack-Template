@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     plumber = require('gulp-plumber'),
     prefix = require('gulp-autoprefixer'),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    bundle = require('gulp-react-bundle');
 
 //path
 var path = {
@@ -33,6 +34,11 @@ gulp.task('sass', function() {
     }));
 });
 
+gulp.task('js', function() {
+  bundle('./public/js/react/react.js', './public/js');
+});
+
 gulp.task('default', function() {
   gulp.watch(path.scss.folder + "/**/*.scss", ['sass']);
+  //gulp.watch(path.js, ['js']);
 });
