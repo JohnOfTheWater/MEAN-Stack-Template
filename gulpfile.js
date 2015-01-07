@@ -33,6 +33,18 @@ gulp.task('sass', function() {
     }));
 });
 
-gulp.task('default', function() {
+gulp.task('sync', function() {
+    browserSync({
+        proxy: "localhost:8080",
+        logConnections: true,
+        logLevel: "debug",
+        logPrefix: "Browser Sync",
+        online: false,
+        browser: 'google chrome'
+    });
+});
+
+gulp.task('default', ['sass', 'sync'], function() {
   gulp.watch(path.scss.folder + "/**/*.scss", ['sass']);
 });
+
